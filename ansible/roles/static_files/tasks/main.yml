@@ -1,0 +1,28 @@
+---
+- name: Create images directory
+  ansible.builtin.file:
+    path: /var/www/html/images
+    state: directory
+    mode: '0755'
+
+- name: Upload static images
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: /var/www/html/images/
+    owner: www-data           # Change owner if necessary
+    group: www-data           # Change group if necessary
+    mode: '0644'
+  with_fileglob:
+    - files/images/*
+
+- name: Configure Nginx for static files
+  ansible.builtin.template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/conf.d/static_images.conf
+  notify: Restart Nginx  # Notify the handler to restart Nginx if this task changes
+
+- name: Ensure Nginx is running
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: yes

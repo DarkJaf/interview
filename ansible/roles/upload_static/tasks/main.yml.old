@@ -1,0 +1,9 @@
+# roles/upload_static/tasks/main.yml
+---
+- name: Download static files
+  ansible.builtin.get_url:
+    url: "https://i.imgur.com/{{ item }}"
+    dest: "/var/www/html/images/{{ item }}"
+  loop:
+    - "fPdXbmg.jpg"
+    - "9E0pZRi.jpg"

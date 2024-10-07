@@ -1,0 +1,9 @@
+---
+# Список дополнительных утилит для установки
+additional_packages:
+  - htop
+  - ncdu
+  - git
+  - nano
+  - wget
+  - curl

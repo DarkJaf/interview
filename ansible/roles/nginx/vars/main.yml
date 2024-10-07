@@ -1,0 +1,6 @@
+---
+# Настройки для Nginx
+server_name: "127.0.0.1"   # Замените на ваш домен
+root_directory: "/var/www/html"   # Корневая директория
+access_log_path: "/var/log/nginx/access.log"  # Путь к логам доступа
+error_log_path: "/var/log/nginx/error.log"    # Путь к логам ошибок

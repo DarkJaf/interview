@@ -1,0 +1,38 @@
+# Dockerfile
+FROM ubuntu:24.04
+
+# Устанавливаем необходимые пакеты
+RUN apt-get update && apt-get install -y \
+    openssh-server \
+    sudo \
+    curl \
+    wget \
+    nginx \
+    git \
+    zsh \
+    htop \
+    ncdu \
+    nano \
+    && apt-get clean
+
+# Настраиваем SSH
+RUN mkdir /var/run/sshd
+
+# Создаём пользователя и даём ему права sudo
+RUN useradd -m -s /bin/bash ansible \
+    && echo 'ansible:ansible' | chpasswd \
+    && usermod -aG sudo ansible
+
+# Разрешаем sudo без пароля
+RUN echo 'ansible ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+# Отключаем возможность логина root и пустых паролей
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_config \
+    && sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config \
+    && sed -i 's/#PermitEmptyPasswords no/PermitEmptyPasswords no/' /etc/ssh/sshd_config
+
+# Открываем порты
+EXPOSE 22 80
+
+# Стартуем SSH и Nginx
+CMD ["/bin/bash", "-c", "service ssh start && nginx -g 'daemon off;'"]

@@ -1,0 +1,32 @@
+---
+# Убеждаемся, что кастомные группы созданы
+- name: Ensure custom groups exist
+  ansible.builtin.group:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ custom_groups }}"
+  when: custom_groups is defined
+
+# Управление пользователями
+- name: Manage users
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    shell: "{{ item.shell | default('/bin/bash') }}"
+    state: "{{ item.state }}"
+    groups: "{{ item.groups | join(',') if item.groups is defined else omit }}"
+    password: "{{ item.password | default(omit) }}"
+    createhome: yes
+    remove: "{{ item.state == 'absent' }}"
+  loop: "{{ users }}"
+  when: users is defined
+
+# Настройка SSH-ключей для пользователей (если указаны)
+- name: Set up SSH authorized key for users
+  ansible.builtin.authorized_key:
+    user: "{{ item.name }}"
+    state: present
+    key: "{{ item.ssh_key }}"
+  loop: "{{ users }}"
+  when:
+    - item.ssh_key is defined
+    - item.state == 'present'

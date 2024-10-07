@@ -1,0 +1,26 @@
+---
+# Кастомные группы
+custom_groups:
+  - "developers"
+  - "admin"
+  - "testers"
+# Список пользователей
+users:
+  - name: "user1"
+    shell: "/bin/bash"
+    state: "present"
+    password: "{{ vault_users_passwords.user1_password }}"
+    ssh_key: "ssh-rsa AAAAB3Nz..."
+    groups:
+      - "developers"
+      - "admin"
+
+  - name: "user2"
+    shell: "/bin/zsh"
+    state: "present"
+    password: "{{ vault_users_passwords.user2_password }}"
+    groups:
+      - "testers"
+
+  - name: "user3"
+    state: "absent"

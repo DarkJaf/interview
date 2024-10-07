@@ -1,0 +1,13 @@
+server {
+    listen 80;
+    server_name localhost;
+
+    location /images {
+        alias /var/www/html/images;   # Serve static files from this directory
+        autoindex on;                 # Enable directory listing
+    }
+
+    location /images/ {
+        autoindex on;                 # Enable directory listing for images
+    }
+}

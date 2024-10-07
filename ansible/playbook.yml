@@ -1,0 +1,9 @@
+---
+- hosts: webservers
+  become: yes
+  roles:
+    - user_management
+    - install_packages
+    - configure_ssh
+    - install_nginx
+    - upload_static

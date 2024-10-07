@@ -1,0 +1,6 @@
+---
+- name: Deploy Static Files
+  hosts: all
+  become: yes
+  roles:
+    - static_files

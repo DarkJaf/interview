@@ -1,0 +1,40 @@
+worker_processes auto;
+
+events {
+    worker_connections 1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    # Gzip settings
+    gzip on;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+    gzip_min_length 256;
+
+    # Log settings
+    access_log {{ access_log_path }};
+    error_log {{ error_log_path }} warn;
+
+    server {
+        listen       80;
+        server_name  {{ server_name }};
+        root         {{ root_directory }};
+        
+        location / {
+            index  index.html index.htm;
+        }
+
+        # Caching settings
+        location /static/ {
+            expires 1h;  # Кэширование на 1 час
+            add_header Cache-Control "public, max-age=3600";
+        }
+        
+        # Other locations can be added here
+        location /api/ {
+            # настройки для API
+        }
+    }
+}

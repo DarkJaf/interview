@@ -1,0 +1,11 @@
+---
+- name: Update all packages
+  ansible.builtin.apt:               # Для Debian/Ubuntu
+    update_cache: yes
+    upgrade: dist
+
+- name: Install additional packages
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ additional_packages }}"

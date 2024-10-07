@@ -1,0 +1,8 @@
+version: '3'
+services:
+  webserver:
+    build: .
+    ports:
+      - "80:80"
+      - "2222:22"  # SSH порт для Ansible
+    container_name: ansible-test

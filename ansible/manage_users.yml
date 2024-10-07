@@ -1,0 +1,6 @@
+---
+- name: Manage users and groups
+  hosts: all
+  become: yes
+  roles:
+    - users

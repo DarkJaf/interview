@@ -1,0 +1,22 @@
+---
+- name: Ensure /images directory exists
+  file:
+    path: /images
+    state: directory
+    mode: '0755'
+
+- name: Copy image1 to /images
+  copy:
+    src: image1.jpeg
+    dest: /images/image1.jpeg
+    owner: www-data
+    group: www-data
+    mode: '0644'
+
+- name: Copy image2 to /images
+  copy:
+    src: image2.jpeg
+    dest: /images/image2.jpeg
+    owner: www-data
+    group: www-data
+    mode: '0644'
