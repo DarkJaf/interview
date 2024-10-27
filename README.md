@@ -12,7 +12,7 @@ Vault pass: 12345
 
 Если честно не понял задание номер 2. то ли нужно было добавить в кастомные пользователи, то ли надо было создать просто роль.
 я не добавил его в роли, но думаю сделал бы так
-
+```
 ---
 - name: Install Zsh
   apt:
@@ -25,3 +25,4 @@ Vault pass: 12345
   shell: |
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   when: ansible_env.SHELL == "/bin/zsh"
+```
