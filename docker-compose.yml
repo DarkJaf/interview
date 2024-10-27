@@ -4,5 +4,5 @@ services:
     build: .
     ports:
       - "80:80"
-      - "2222:22"  # SSH порт для Ansible
+      - "22:22"  
     container_name: ansible-test

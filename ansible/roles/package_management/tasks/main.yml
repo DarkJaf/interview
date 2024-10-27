@@ -1,6 +1,6 @@
 ---
 - name: Update all packages
-  ansible.builtin.apt:               # Для Debian/Ubuntu
+  ansible.builtin.apt: #for debian based
     update_cache: yes
     upgrade: dist
 

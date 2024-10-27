@@ -1,5 +1,5 @@
 ---
-# Список дополнительных утилит для установки
+# list for insatll additional packages
 additional_packages:
   - htop
   - ncdu
