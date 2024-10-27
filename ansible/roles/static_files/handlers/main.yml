@@ -1,4 +1,5 @@
 ---
+# Restart Nginx Service for take efefct
 - name: Restart Nginx
   ansible.builtin.service:
     name: nginx

@@ -13,7 +13,7 @@
     group: www-data           # Change group if necessary
     mode: '0644'
   with_fileglob:
-    - files/images/*
+    - files/Images/*
 
 - name: Configure Nginx for static files
   ansible.builtin.template:

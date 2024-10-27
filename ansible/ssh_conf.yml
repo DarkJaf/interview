@@ -1,4 +1,5 @@
 ---
+# Deploy ssh users
 - name: Apply SSH configuration
   hosts: all
   become: yes

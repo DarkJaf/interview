@@ -1,4 +1,5 @@
 ---
+#Deploy static files
 - name: Deploy Static Files
   hosts: all
   become: yes

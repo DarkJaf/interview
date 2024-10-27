@@ -1,10 +1,10 @@
 ---
-# Кастомные группы
+# Custom Group
 custom_groups:
   - "developers"
   - "admin"
   - "testers"
-# Список пользователей
+# custom users
 users:
   - name: "user1"
     shell: "/bin/bash"

@@ -1,5 +1,5 @@
 ---
-# Убеждаемся, что кастомные группы созданы
+
 - name: Ensure custom groups exist
   ansible.builtin.group:
     name: "{{ item }}"
@@ -7,7 +7,7 @@
   loop: "{{ custom_groups }}"
   when: custom_groups is defined
 
-# Управление пользователями
+
 - name: Manage users
   ansible.builtin.user:
     name: "{{ item.name }}"
@@ -20,7 +20,7 @@
   loop: "{{ users }}"
   when: users is defined
 
-# Настройка SSH-ключей для пользователей (если указаны)
+
 - name: Set up SSH authorized key for users
   ansible.builtin.authorized_key:
     user: "{{ item.name }}"

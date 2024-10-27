@@ -1,11 +1,4 @@
 ---
-- name: Backup current sshd_config
-  ansible.builtin.copy:
-    src: /etc/ssh/sshd_config
-    dest: /etc/ssh/sshd_config.backup
-    remote_src: yes
-    backup: yes
-
 - name: Configure SSH settings
   ansible.builtin.template:
     src: sshd_config.j2
